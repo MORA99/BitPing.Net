@@ -1,0 +1,139 @@
+BitPing.Net installation guide.
+
+1) This guide starts with a Debian 6.0 minimal installation
+2) Installing packages
+adduser bitcoin
+su - bitcoin
+wget http://downloads.sourceforge.net/project/bitcoin/Bitcoin/bitcoin-0.5.1/bitcoin-0.5.1-linux.tar.gz
+tar zxvf ...
+rm *.tar.gz
+mv bitcoin-0.5.1-linux/ bitcoin
+cd bitcoin/bin/64 (or 32)
+
+echo "rpcpassword=fuidea89893u21jq" >> /home/bitcoin/.bitcoin/bitcoin.conf  (we will never use the rpc part, however you should still use a unique password)
+chmod 700 /home/bitcoin/.bitcoin/bitcoin.conf
+./bitcoind
+If no errors, kill it with CTRL+C, and then ./bitcoind -daemon
+The daemon is now catching up with the blockchain, we can use "./bitcoind getblockcount" to see how its doing
+
+
+
+Go back to root
+
+
+apt-get update
+apt-get install sun-java6-jre apache2 php5 mysql-server-5.1 python2.6 python-crypto python-mysqldb php5-curl postfix
+
+We now have MySQL installed, time to make 2 databases
+
+mysql -u root -p
+mysql> CREATE DATABASE abe;
+mysql> CREATE DATABASE bpn;
+mysql> GRANT ALL ON abe.* TO bpn@localhost IDENTIFIED BY 'abc';
+mysql> GRANT ALL ON bpn.* TO bpn@localhost IDENTIFIED BY 'abc';
+mysql> flush privileges;
+mysql> exit
+
+You should ofcause choose a different password than abc, and you have choose different database names.
+
+
+Time to install Abe
+wget "http://github.com/jtobey/bitcoin-abe/tarball/v0.6"
+(wget --no-check-certificate "http://github.com/jtobey/bitcoin-abe/tarball/v0.6" if your wget complains, and you dont want to fix the ssl problem)
+
+tar zxvf ...
+mv to Abe
+cd Abe
+
+edit abe-my.conf to read
+dbtype MySQLdb
+connect-args {"user":"abe","db":"abe","passwd":"-THE-PASS-YOU-USED"}
+upgrade
+
+As root in your homedir/Abe
+python setup.py install
+
+As regular user in same dir
+python -m Abe.abe --config abe-my.conf --no-serve
+
+
+
+If it starts to update, all is good for now...
+Since bitcoind is still catching up, Abe will exit when it has cought up to the point where bitcoind was when Abe started
+Therefore you may need to start it a few times, untill the initial sync is done
+
+while true; do python -m Abe.abe --config abe-my.conf --no-serve ; sleep 60; done  
+And then abort it when it has cached up
+
+The sync of Abe and bitcoind can take several days depending on the computer you are running it on, expect at least 6hours.
+
+
+
+
+
+
+
+
+
+
+
+
+Setting up BPN.
+Import the bpn.sql file into the database you created.
+
+You will then need to setup your first monitor order.
+
+1) Create a user in the users table (use a valid email address)
+2) Create a order
+3) Create 1 or more notify options (for now you can use 1 for email) in order_notify
+4) Create 1 or more addresses to monitor in order_address
+
+Then let BPN catch up to Abe (Or cheat and set the key in sequence to the latest tx)
+Then create a transaction to the monitored address
+And monitor the output from bpn-monitor, either in crontab or a bash loop like with Abe
+About the same time as your bitcoin client marks the transaction as 1/confirmed, the monitor script should see it, it will then send out a notification when the number of confirmations is reached.
+If you are having problems with the mail sending or otherwise, you can comment out the bottom part of the monitor script, or set the sequence number back, so it will parse the same tx again, instead of spending all your BTC on fees.
+
+
+
+
+
+
+To get the BPN system rolling, we need to keep the database updated, so we make a sh script as follows.
+
+#!/bin/sh
+
+if [ ! -e "/tmp/bpn-update" ]; then
+   trap "rm -f /tmp/bpn-update; exit" INT TERM EXIT
+   touch /tmp/bpn-update
+
+   cd /home/bitcoin/Abe/
+   python -m Abe.abe --config abe-my.conf --no-serve
+   php /var/www/bitping/monitor/bpn-monitor.php
+
+   rm /tmp/bpn-update
+   trap - INT TERM EXIT
+fi
+
+If you are running the website and Abe on two different machines, you can use wget or lynx instead of php to execute the monitor script.
+You should limit access to the monitor script to the IP that runs Abe (It does not hurt to run it often, but running it while Abe is updateing, could mean it will miss a tx)
+
+
+Check that you got the paths right, and when Abe is catched up add it to crontab.
+How often you run it, is really up to you.
+Every minute is a bit overkill, since currently we only support 1+ confirmations, and a block is usually every 10minutes
+However if there is no work, both Abe and the monitor script will exit in a few seconds. 2-5minutes is a good tradeoff between notify speed and wasted cpu cycles.
+
+
+
+
+To maintain the database you can use phpMyAdmin, or build a website around it like BitPing.Net, it really depends on your needs, if you plan on running a service, a website would be needed, but if this is just for your own shop, phpMyAdmin will do fine, you just need to enter in the addresses and the url/email targets.
+
+
+This is still beta software, while it has been running for a while on my own setup, it should not be considdered stable.
+You should not rely on this software alone, and of cause there is no gurantee of anything, or in big caps language.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. 
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
