@@ -1,47 +1,12 @@
 <? require("system/shared.php"); ?>
+<?checklogin();?>
 <? require("header.php"); ?>
 <body>
-    <? topbar("home"); ?>
+    <? topbar("start", true); ?>
 
     <div class="container">
         <div class="content">
             <div class="page-header">
-                <?
-                if ($_GET["errmsg"] != "") {
-                    switch (filter_var($_GET["errmsg"], FILTER_SANITIZE_STRING)) {
-                        case "loginfailure":
-                            $errmsg = "Wrong username or password - <a href='/lostpass.php'>Forgot your username/password?</a>";
-                            break;
-                    }
-                    ?>
-                <div class="alert-message error">
-                    <p><?=$errmsg?></p>
-                </div>
-    <?
-}
-
-                if ($_GET["infomsg"] != "") {
-                    switch (filter_var($_GET["infomsg"], FILTER_SANITIZE_STRING)) {
-                        case "usercreated":
-                            $infomsg = "User created, you may now login.";
-                            break;
-
-                        case "resetmsgsent":
-                            $infomsg = "Reset email sent, please check your email and click the link within 1 hour";
-                            break;
-
-                        case "passresetcomplete":
-                            $infomsg = "Your password has been reset, please check your email for a new temporary one";
-                            break;
-                    }
-                    ?>
-                <div class="alert-message success">
-                    <p><?=$infomsg?></p>
-                </div>
-                    <?
-}
-?>
-
                 <h1>Introduction <small>to using BPN in a webshop</small></h1>
             </div>
             <div class="row">
@@ -58,9 +23,9 @@
 	    You can use Vanitygen to generate the addresses, then insert them into your database, and export the addresses to BPN (One address per line, no seperators).<br>
 	    The code for the monitor is opensource, so you can run your own server instead of using BPN if you like.	    
                 </div>
-<? require("system-status.php"); ?>
+                <? require("system-status.php"); ?>
             </div>
-                    <? require("footer.php"); ?>
+            <? require("footer.php"); ?>
         </div>
 </body>
 </html>

@@ -1,25 +1,6 @@
 <?
 require(dirname(__FILE__)."/../www/system/shared.php");
 
-function httpPost($url, $params) {
-    $options = "";
-    foreach ($params as $key=>$val) {
-        $options .= "&".$key."=".urlencode($val);
-    }
-
-    $curl_handle=curl_init();
-    curl_setopt($curl_handle,CURLOPT_URL,$url);
-    curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,10);
-
-    curl_setopt($curl_handle,CURLOPT_POST,TRUE);
-    curl_setopt($curl_handle,CURLOPT_POSTFIELDS,$options);
-
-    $result = curl_exec($curl_handle);
-    curl_close($curl_handle);
-
-    return $result;
-}
-
 $txseqkey = "last_tx";
 $db = Database::getInstance();
 
@@ -151,9 +132,14 @@ while ($row = $res->fetch_array()) {
                             $data["block"] = $block;
                             $data["signature"] = sha1( $address . $value . $confirmations . $txhash . $block . $user->secret );
 
-                            $result = httpPost($user->url, $data);
-                            if ($result !== TRUE)
-                                $success = false;
+                            if(filter_var($user->url, FILTER_VALIDATE_URL) !== FALSE && $user->url != "")
+                            {
+                                $result = httpPost($user->url, $data);
+                                if ($result !== TRUE)
+                                    $success = false;
+                            } else {
+                                mail(SYS_ADMIN, "URL in monitor bad", "Skipping http attempt for ".$user->url, "FROM: monitor@bitping.net");
+                            }
                             break;
                     }
                 }
