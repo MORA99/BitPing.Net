@@ -82,6 +82,7 @@ Setting up BPN.
 Import the bpn.sql file into the database you created.
 -It will create a database with 1 user named super and the password 1234, change it as soon as possible.
 -You can change the username in the database or in the dump before importing.
+-If you plan to use the user for notifications using HTTP, you should change the secret value also.
 
 You will then need to setup your first monitor order.
 
