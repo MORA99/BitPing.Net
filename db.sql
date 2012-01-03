@@ -235,3 +235,4 @@ CREATE TABLE IF NOT EXISTS `users` (
 INSERT INTO `users` (`uid`, `username`, `password`, `email`, `url`, `secret`, `BTC`) VALUES
 (1, 'super', '22a081adb20f93c191603d4904ddfa11bf5d85687d34b3e98529574e5f52298208928f350d58f3108d4d82d4276913250fc33c143b17f48c0812f83b86089bfe', 'root@localhost', '', 'W5HDrY22R8F4ETXpPyQBdjQuaF9p2KjB', '');
 
+INSERT INTO `notify_options` (`notify_id`, `name`, `desc`, `price`) VALUES ('3', 'Pubnub', '', '0');
