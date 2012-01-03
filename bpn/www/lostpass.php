@@ -71,7 +71,7 @@ if (isset($_POST['resend'])) {
     die();
 }
 
-require("header.php");
+$title=" - Lost password"; require("header.php");
 ?>
 <body>
 <? topbar("home"); ?>

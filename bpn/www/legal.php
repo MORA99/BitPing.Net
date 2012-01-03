@@ -1,5 +1,5 @@
 <? require("system/shared.php"); ?>
-<? require("header.php"); ?>
+<? $title=" - Legal"; require("header.php"); ?>
 <body>
     <? topbar("legal"); ?>
 

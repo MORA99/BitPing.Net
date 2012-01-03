@@ -1,5 +1,5 @@
 <? require("system/shared.php"); ?>
-<? require("header.php"); ?>
+<? $title=" - Contact"; require("header.php"); ?>
 <body>
     <? topbar("contact"); ?>
 

@@ -48,7 +48,7 @@
                 <div class="span10">
                     BitPing.Net (BPN) is a service that enables merchants to accept bitcoins with a minimum of effort.<br>
 	    Users add a list of public addresses to be monitored, and BPN sends a notification when a payment is received.<br>
-	    Notifications can currently be made using Email and HTTP POST<br>
+	    Notifications can currently be made using Email, HTTP POST and Pubnub<br>
                     <br>
 	    To use BPN in a webshop, you need to generate a "large" amount of addresses.<br>
 	    Then upload these addresses to BPN, and select the number of confirmations you require (1-6)<br>

@@ -3,7 +3,7 @@
 <?
 $activeuser = Users::getActiveUser();
 
-require("header.php");
+$title=" - Event test"; require("header.php");
 ?>
 <body>
 <? topbar("api", true); ?>

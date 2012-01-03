@@ -9,6 +9,9 @@ define("DB_USER_BPN", "bpn");
 define("DB_PASS_BPN", "pass");
 define("DB_BPN", "bpn");
 
+define("PUBNUB_PUB", "demo");
+define("PUBNUB_SUB", "demo");
+
 //Change to your email address
 define("SYS_ADMIN", "root@localhost");
 ?>

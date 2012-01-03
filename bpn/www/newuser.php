@@ -24,7 +24,7 @@ if (isset($_POST['register'])) {
     }
 }
 
-require("header.php");
+$title=" - Register"; require("header.php");
 ?>
 <body>
 <? topbar("register"); ?>

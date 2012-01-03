@@ -25,7 +25,7 @@ if (isset($_POST["create"])) {
 
 ?>
 
-<? require("header.php"); ?>
+<? $title=" - Create order"; require("header.php"); ?>
 <body>
 <? topbar("orders", true); ?>
 
@@ -64,7 +64,8 @@ if (isset($_POST["create"])) {
                                 <label>Notification methods</label>
                                 <div class="input">
                                     <input name="notifications[]" type="checkbox" value="1" checked> Email<br>
-                                    <input name="notifications[]" type="checkbox" value="2" checked> HTTP POST
+                                    <input name="notifications[]" type="checkbox" value="2" checked> HTTP POST (Set url in profile)<br>
+				    <input name="notifications[]" type="checkbox" value="3" checked> Pubnub (See API for details)<br>
                                 </div>
                             </div>
 

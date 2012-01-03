@@ -2,9 +2,12 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Bitping.net</title>
-        <meta name="description" content="">
-        <meta name="author" content="">
+        <title>Bitping.net<?=$title?></title>
+        <meta name="description" content="Bitcoin notify service, free and opensource">
+        <meta name="author" content="Jan Nielsen aka MORA">
+	<meta name="keywords" content="bitcoin, bitping, bitcoin-notify, BTC, pubnub" />
+	<meta name="robots" content="ALL" />
+	<meta name="copyright" content="unlicense.org - Public domain" />
 
         <!--[if lt IE 9]>
           <script src="/clientside/html5.js"></script>

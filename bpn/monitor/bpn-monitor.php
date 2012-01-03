@@ -1,5 +1,6 @@
 <?
 require(dirname(__FILE__)."/../www/system/shared.php");
+require(dirname(__FILE__)."/../www/system/Pubnub.php");
 
 $txseqkey = "last_tx";
 $db = Database::getInstance();
@@ -24,7 +25,7 @@ if ($res && $res->num_rows > 0) {
 }
 
 
-//Select 1000 new outputs, if there are more the script will slowly catch up (Unless bitcoin grows to where 10.000 outputs are used each minute)
+//Select 10000 new outputs, if there are more the script will slowly catch up (Unless bitcoin grows to where 10.000 outputs are used each minute)
 $res = $db->queryAbe("SELECT `pubkey_hash` as `pubkey`, `txout_value` as `value`, `tx_id`, `block_id` FROM txout_detail WHERE `tx_id` > ".$lasttx." LIMIT 10000");
 if ($res) {
     $num = $res->num_rows;
@@ -75,6 +76,11 @@ if ($stmt->fetch()) {
 }
 
 $res = $db->query("SELECT order_id,tx_id,address,`value` FROM `active_monitors`");
+if ($res->num_rows > 0)
+{
+	$pubnub = new Pubnub(PUBNUB_PUB, PUBNUB_SUB, "", false);
+}
+
 while ($row = $res->fetch_array()) {
     $tx = $row['tx_id'];
     $orderid = $row['order_id'];
@@ -131,7 +137,6 @@ while ($row = $res->fetch_array()) {
                             $data["txhash"] = $txhash;
                             $data["block"] = $block;
                             $data["signature"] = sha1( $address . $value . $confirmations . $txhash . $block . $user->secret );
-
                             if(filter_var($user->url, FILTER_VALIDATE_URL) !== FALSE && $user->url != "")
                             {
                                 $result = httpPost($user->url, $data);
@@ -141,6 +146,24 @@ while ($row = $res->fetch_array()) {
                                 mail(SYS_ADMIN, "URL in monitor bad", "Skipping http attempt for ".$user->url, "FROM: monitor@bitping.net");
                             }
                             break;
+
+			case 3:
+			//Pubnub
+                            $data = array();
+
+                            $data["to_address"] = $address;
+                            $data["amount"] = $value;
+                            $data["btc_amount"] = $btc;
+                            $data["confirmations"] = $confirmations;
+                            $data["txhash"] = $txhash;
+                            $data["block"] = $block;
+                            $data["signature"] = sha1( $address . $value . $confirmations . $txhash . $block . $user->secret );
+
+			$pubnub->publish(array(
+			    'channel' => sha1 ( $user->secret ),
+			    'message' => $data
+			));
+			break;
                     }
                 }
 

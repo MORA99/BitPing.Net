@@ -9,7 +9,7 @@ if (isset($_POST["delete"])) {
     die();
 }
 
-require("header.php");
+$title=" - Profile"; require("header.php");
 
 if (isset($_POST["save"])) {
     $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);

@@ -1,6 +1,6 @@
 <? require("system/shared.php"); ?>
 <?checklogin();?>
-<? require("header.php"); ?>
+<? $title=" - Orders"; require("header.php"); ?>
 <body>
     <? topbar("orders", true); ?>
 

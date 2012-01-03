@@ -37,7 +37,8 @@ if (isset($_POST["save"])) {
     die();
 }
 
-require("header.php"); ?>
+$title=" - Edit order"; require("header.php");
+?>
 <body>
 <?
 topbar("orders", true);
@@ -56,6 +57,7 @@ topbar("orders", true);
         $notify[] = $type->id;
     $nc1 = (in_array(1, $notify))?' checked ':'';
     $nc2 = (in_array(2, $notify))?' checked ':'';
+    $nc3 = (in_array(3, $notify))?' checked ':'';
     ?>
     <div class="container">
         <div class="content">
@@ -92,7 +94,8 @@ topbar("orders", true);
                                 <label>Notification methods</label>
                                 <div class="input">
                                     <input name="notifications[]" type="checkbox" value="1" <?=$nc1?>> Email<br>
-                                    <input name="notifications[]" type="checkbox" value="2" <?=$nc2?>> HTTP POST
+                                    <input name="notifications[]" type="checkbox" value="2" <?=$nc2?>> HTTP POST (Set url in profile)<br>
+				    <input name="notifications[]" type="checkbox" value="3" <?=$nc3?>> Pubnub (See API for details)
                                 </div>
                             </div>
 

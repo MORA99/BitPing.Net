@@ -1,7 +1,7 @@
 <?
 require("system/shared.php");
 checklogin();
-require("header.php");
+$title=" - API"; require("header.php");
 $activeuser = Users::getActiveUser();
 ?>
 <body>
@@ -60,6 +60,10 @@ $activeuser = Users::getActiveUser();
                 }
                     </textarea>
 
+<br><br><h1>Pubnub</h1>
+Sub-key: <?=PUBNUB_SUB?><br>
+Channel: <?=sha1($activeuser->secret)?> (Your private channel)<br>
+Data is the same as described in HTTP POST (json encoded)<br>
                 </div>
                 <? require("system-status.php"); ?>
             </div>
