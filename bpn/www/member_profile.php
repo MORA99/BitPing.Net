@@ -17,7 +17,7 @@ if (isset($_POST["save"])) {
     
     if (filter_var($email, FILTER_VALIDATE_EMAIL) !== FALSE)
         $activeuser->email = $email;
-    if (filter_var($url, FILTER_VALIDATE_URL) !== FALSE)
+    if ($url == "" || filter_var($url, FILTER_VALIDATE_URL) !== FALSE)
         $activeuser->url = $url;
 
     if (isset($_POST["password"]) && $_POST["password"] == $_POST["passwordc"] && $_POST["password"] != "") {
@@ -69,7 +69,7 @@ if (isset($_POST["save"])) {
                             <div class="clearfix">
                                 <label>POST URL</label>
                                 <div class="input">
-                                    <input type="text" name="url" value="<?=$activeuser->url;?>">
+                                    <input type="text" name="url" value="<?=$activeuser->url;?>"><br>(ie. http://www.mydomain.tld/script.php)
                                 </div>
                             </div>
 

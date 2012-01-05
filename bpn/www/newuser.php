@@ -4,27 +4,42 @@ require("system/shared.php");
 if (isset($_POST['register'])) {
     $username = filter_var($_POST["username"], FILTER_SANITIZE_STRING);
     $password = $_POST["password"];
+    $passwordc = $_POST["passwordc"];
     $email = filter_var($_POST["email"], FILTER_SANITIZE_EMAIL);
 
     if (users::isUsernameAvaliable($username)) {
-        if (users::isEmailInUse($email)==false) {
-            $user = new User();
-            $user->username = $username;
-            $user->password = $password; //gets hashed in user class
-            $user->email = $email;
-            $user->save();
+        if (strlen($username) >= 3) {
+            if ($password == $passwordc) {
+                if ($email !== FALSE && $email != "") {
+                    if (users::isEmailInUse($email)==false) {
+                        $user = new User();
+                        $user->username = $username;
+                        $user->password = $password; //gets hashed in user class
+                        $user->email = $email;
+                        $user->save();
 
-            header("Location: /?infomsg=usercreated");
-            die();
+                        header("Location: /?infomsg=usercreated");
+                        die();
+                    } else {
+                        $errmsg = "This email address is already in use, please login or use a different one.<br>If you need more than 1000addresses, please contact us instead of making multiple accounts.";
+                    }
+                } else {
+                    $errmsg = "Invalid email address";
+                }
+
+            } else {
+                $errmsg = "Passwords does not match.";
+            }
         } else {
-            $errmsg = "This email address is already in use, please login or use a different one.<br>If you need more than 1000addresses, please contact us instead of making multiple accounts.";
+            $errmsg = "Username must be at least 3 chars long.";
         }
     } else {
         $errmsg = "This username is already taken, please select another one.";
     }
 }
 
-$title=" - Register"; require("header.php");
+$title=" - Register";
+require("header.php");
 ?>
 <body>
 <? topbar("register"); ?>
@@ -43,10 +58,10 @@ if ($errmsg != "") {
                     <div class="alert-message error">
                         <p><?=$errmsg?></p>
                     </div>
-                        <?
+    <?
 }
 
-?>          
+                    ?>
 
 
 
