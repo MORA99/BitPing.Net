@@ -140,8 +140,10 @@ while ($row = $res->fetch_array()) {
                             if(filter_var($user->url, FILTER_VALIDATE_URL) !== FALSE && $user->url != "")
                             {
                                 $result = httpPost($user->url, $data);
-                                if ($result !== TRUE)
+                                if ($result === FALSE)
                                     $success = false;
+				else
+                                    $success = true;
                             } else {
                                 mail(SYS_ADMIN, "URL in monitor bad", "Skipping http attempt for ".$user->url, "FROM: monitor@bitping.net");
                             }

@@ -59,7 +59,7 @@ class Order {
         $stmt->bind_param("i", $this->orderid);
         $db->update($stmt);
 
-        $stmt = $db->prepare("INSERT INTO order_address (order_id, address) VALUES (?, ?)");
+        $stmt = $db->prepare("INSERT IGNORE INTO order_address (order_id, address) VALUES (?, ?)");
         $bc = new Bitcoin();
         foreach ($addresses as $address) {
             if ($bc->checkAddress($address)) {
