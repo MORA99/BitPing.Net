@@ -5,8 +5,8 @@ require(dirname(__FILE__)."/../www/system/Pubnub.php");
 $db = Database::getInstance();
 $confirmations = 0;
 
-//Check for active monitors
-$res = $db->query("SELECT order_id,tx_hash,address,`value` FROM `active_uncomfirmed_monitors`");
+//Check for active monitors, order by ensures new events are attempted first
+$res = $db->query("SELECT order_id,tx_hash,address,`value` FROM `active_uncomfirmed_monitors` ORDER BY id DESC");
 if ($res->num_rows > 0)
 {
 	$pubnub = new Pubnub(PUBNUB_PUB, PUBNUB_SUB, "", false);
@@ -97,5 +97,5 @@ while ($row = $res->fetch_array()) {
     //STOP COMMENT HERE
 }
 
-//Cleanup - Delete any monitors with a failure count over 10 AND a timestamp more than 1hours ago
-$stmt = $db->query("DELETE FROM `active_uncomfirmed_monitors` WHERE failures > 20 AND NOW() > TIMESTAMPADD(MINUTE,5,`timestamp`) LIMIT 1");
+//Cleanup - Delete any monitors with a failure count over 10 AND a timestamp more than 1hours ago 5*6=30
+$stmt = $db->query("DELETE FROM `active_uncomfirmed_monitors` WHERE failures > 10 AND NOW() > TIMESTAMPADD(MINUTE,5,`timestamp`) LIMIT 1");
