@@ -52,7 +52,6 @@
 	    Notifications can currently be made using Email, HTTP POST and Pubnub<br>
                     <br>
 
-	<div class="alert-message success">BitPing.Net has moved to a new server and is catched up to the blockchain<br><br>Notifications are not longer delayed.</div>
 <br>
 	    To use BPN in a webshop, you need to generate a "large" amount of addresses.<br>
 	    Then upload these addresses to BPN, and select the number of confirmations you require (1-6)<br>
