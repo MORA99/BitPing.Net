@@ -21,8 +21,8 @@ $db->update($stmt);
 $db->query("UNLOCK TABLES");
 ?>
 
-<a href="bitcoin:<?=$address?>&amount=0.01">bitcoin:<?=$address?>&amount=0.01</a><br>
-<img src="qr.php?text=bitcoin:<?=$address?>&amount=0.01">
+<a href="bitcoin:<?=$address?>?amount=0.01">bitcoin:<?=$address?>?amount=0.01</a><br>
+<img src="qr.php?text=bitcoin:<?=$address?>?amount=0.01">
 
 
 <script>

@@ -103,6 +103,7 @@ If you are having problems with the mail sending or otherwise, you can comment o
 
 
 To get the BPN system rolling, we need to keep the database updated, so we make a sh script as follows.
+This is also avaliable under crontabs dir.
 
 #!/bin/sh
 
@@ -124,7 +125,7 @@ You should limit access to the monitor script to the IP that runs Abe (It does n
 
 Check that you got the paths right, and when Abe is catched up add it to crontab.
 How often you run it, is really up to you.
-Every minute is a bit overkill, since currently we only support 1+ confirmations, and a block is usually every 10minutes
+Every minute is a bit overkill, since a block is found every 10minutes on average.
 However if there is no work, both Abe and the monitor script will exit in a few seconds. 2-5minutes is a good tradeoff between notify speed and wasted cpu cycles.
 
 
