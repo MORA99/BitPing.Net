@@ -16,7 +16,7 @@
 	    Notifications can currently be made using Email, HTTP POST and Pubnub<br>
                     <br>
 	    To use BPN in a webshop, you need to generate a "large" amount of addresses.<br>
-	    Then upload these addresses to BPN, and select the number of confirmations you require (0-6)<br>
+	    Then upload these addresses to BPN, and select the number of confirmations you require (1-6)<br>
 	    When a customer selects to pay using bitcoin, you select a bitcoin address and assign it to the order.<br>
  	    If the user pays, BPN will send a confirmation email/HTTP POST(once it has been confirmed as many times as requested), which you can use to mark the order as payed.<br>
                     <br>

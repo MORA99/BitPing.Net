@@ -1,6 +1,9 @@
 <?
 require("system/shared.php");
 
+if ($_SERVER["REMOTE_ADDR"] != "127.0.0.1")
+	die();
+
 $arr = json_decode(file_get_contents('php://input'));
 
 $data = $arr->params;

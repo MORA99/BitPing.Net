@@ -23,7 +23,8 @@ $secret = "DEMO";
                 if ($mysig === $sig)
                 {
 			$stmt = $db->prepare("REPLACE INTO `s1_payment` (`address`, `value`, `confirmations`, `last_update`) VALUES (?, ?, ?, NOW())");
-			$stmt->bind_param('sii', $address, $confirmations, $amount);
+			$stmt->bind_param('sii', $address, $value, $confirmations);
+			$db->insert($stmt);
                 } else {
                   //log all post data, send warning email to administrator
                 }

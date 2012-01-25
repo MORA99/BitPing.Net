@@ -34,6 +34,7 @@ function checkPayment()
 	        var btc = data['value'] / 100000000;
 		alert("Got payment of "+data['value']+" ("+btc+" BTC) with "+data['confirmations']+" confirmations");
 		//redirect to download page or something, note that the download page also needs to check that the payment is ok, since this is clientside
+		window.location.replace("/s1/completed.php?address=<?=$address?>");
 	  }
 	  else
 	  {
