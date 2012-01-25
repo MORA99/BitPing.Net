@@ -50,6 +50,7 @@ if (isset($_POST["create"])) {
                                 <label>Confirmations needed</label>
                                 <div class="input">
                                     <select name="confirmations">
+                                        <option value="0">0</option>
                                         <option value="1" selected>1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>

@@ -45,6 +45,7 @@ topbar("orders", true);
 
     $activecheck = ($order->active)?' checked ':'';
 
+    $cs0 = ($order->confirmations==0)?' selected ':'';
     $cs1 = ($order->confirmations==1)?' selected ':'';
     $cs2 = ($order->confirmations==2)?' selected ':'';
     $cs3 = ($order->confirmations==3)?' selected ':'';
@@ -80,6 +81,7 @@ topbar("orders", true);
                                 <label>Confirmations needed</label>
                                 <div class="input">
                                     <select name="confirmations">
+                                        <option value="0"<?=$cs0?>>0</option>
                                         <option value="1"<?=$cs1?>>1</option>
                                         <option value="2"<?=$cs2?>>2</option>
                                         <option value="3"<?=$cs3?>>3</option>

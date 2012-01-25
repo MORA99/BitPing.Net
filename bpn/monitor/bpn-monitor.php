@@ -123,7 +123,7 @@ while ($row = $res->fetch_array()) {
                         case 1:
                         //Email
                             $btc = round($value / 100000000,8);
-                            mail($user->email, "BitPing.Net notification for ".$address." (".$confirmations." confirmations)", "This is a requested notification from BitPing.Net\r\n\r\nThe address : $address has received a payment of $btc BTC in tx $txhash included in block $block", "FROM: monitor@BitPing.Net");
+                            mail($user->email, "BitPing.Net notification for ".$address." (".$confirmations." confirmations)", "This is a requested notification from BitPing.Net\r\n\r\nThe address : $address has received a payment of $btc BTC in tx $txhash included in block $currentheight", "FROM: monitor@BitPing.Net");
                             break;
 
                         case 2:
@@ -135,8 +135,8 @@ while ($row = $res->fetch_array()) {
                             $data["btc_amount"] = $btc;
                             $data["confirmations"] = $confirmations;
                             $data["txhash"] = $txhash;
-                            $data["block"] = $block;
-                            $data["signature"] = sha1( $address . $value . $confirmations . $txhash . $block . $user->secret );
+                            $data["block"] = $currentheight;
+                            $data["signature"] = sha1( $address . $value . $confirmations . $txhash . $currentheight . $user->secret );
                             if(filter_var($user->url, FILTER_VALIDATE_URL) !== FALSE && $user->url != "")
                             {
                                 $result = httpPost($user->url, $data);
@@ -158,8 +158,8 @@ while ($row = $res->fetch_array()) {
                             $data["btc_amount"] = $btc;
                             $data["confirmations"] = $confirmations;
                             $data["txhash"] = $txhash;
-                            $data["block"] = $block;
-                            $data["signature"] = sha1( $address . $value . $confirmations . $txhash . $block . $user->secret );
+                            $data["block"] = $currentheight;
+                            $data["signature"] = sha1( $address . $value . $confirmations . $txhash . $currentheight . $user->secret );
 
 			$pubnub->publish(array(
 			    'channel' => sha1 ( $user->secret ),
@@ -194,5 +194,5 @@ while ($row = $res->fetch_array()) {
     }
 }
 
-//Cleanup - Delete any monitors with a failure count over 10 or a timestamp more than 24hours ago
-$stmt = $db->query("DELETE FROM `active_monitors` WHERE failures > 10 OR NOW() > TIMESTAMPADD(HOUR,24,`timestamp`) LIMIT 1");
+//Cleanup - Delete any monitors with a failure count over 50 AND a timestamp more than 24hours ago
+$stmt = $db->query("DELETE FROM `active_monitors` WHERE failures > 50 AND NOW() > TIMESTAMPADD(HOUR,24,`timestamp`) LIMIT 1");

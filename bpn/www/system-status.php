@@ -1,5 +1,5 @@
 <?
-require_once("system/database.php");
+require_once("system/shared.php");
 $db = Database::getInstance();
 
 $stmt = $db->prepareAbe("SELECT b.block_height

@@ -1,5 +1,6 @@
-<? require("system/shared.php"); ?>
-<? require("header.php"); ?>
+<? require_once("system/shared.php"); ?>
+<? require_once("header.php"); ?>
+
 <body>
     <? topbar("home"); ?>
 
@@ -50,6 +51,9 @@
 	    Users add a list of public addresses to be monitored, and BPN sends a notification when a payment is received.<br>
 	    Notifications can currently be made using Email, HTTP POST and Pubnub<br>
                     <br>
+
+	<div class="alert-message success">BitPing.Net has moved to a new server and is catched up to the blockchain<br><br>Notifications are not longer delayed.</div>
+<br>
 	    To use BPN in a webshop, you need to generate a "large" amount of addresses.<br>
 	    Then upload these addresses to BPN, and select the number of confirmations you require (1-6)<br>
 	    When a customer selects to pay using bitcoin, you select a bitcoin address and assign it to the order.<br>

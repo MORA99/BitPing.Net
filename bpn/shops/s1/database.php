@@ -14,14 +14,7 @@ class Database {
     }
 
     private function __construct() {
-        $this->dblink = new mysqli(DB_HOST_BPN,DB_USER_BPN,DB_PASS_BPN,DB_BPN);
-
-        if (mysqli_connect_errno()) {
-            $this->error(mysqli_connect_error());
-            die('Database connection failed ... try again later');
-        }
-
-        $this->dblinkAbe = new mysqli(DB_HOST_ABE,DB_USER_ABE,DB_PASS_ABE,DB_ABE);
+        $this->dblink = new mysqli(DB_HOST,DB_USER,DB_PASS,DB);
 
         if (mysqli_connect_errno()) {
             $this->error(mysqli_connect_error());
@@ -51,15 +44,12 @@ class Database {
     }
 
     public function query($sql) {
-        return $this->dblink->query($sql);
-    }
-
-    public function queryAbe($sql) {
-        return $this->dblinkAbe->query($sql);
-    }
-
-    public function prepareAbe($sql) {
-        return $this->dblinkAbe->prepare($sql);
+        $res = $this->dblink->query($sql);
+	if (!$res)
+	{
+	    printf("Errormessage: %s\n", $this->dblink->error);
+	}
+	return $res;
     }
 
     public function insert($stmt) {

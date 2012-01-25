@@ -21,8 +21,8 @@ $title=" - Event test"; require("header.php");
 
                             $data["TEST"] = "TRUE";
                             $data["to_address"] = filter_var($_POST["address"], FILTER_SANITIZE_STRING);
-                            $data["amount"] = (filter_var($_POST["value"], FILTER_SANITIZE_NUMBER_FLOAT) * 100000000);
-                            $data["btc_amount"] = filter_var($_POST["value"], FILTER_SANITIZE_NUMBER_FLOAT);
+                            $data["amount"] = (filter_var($_POST["value"], FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION) * 100000000);
+                            $data["btc_amount"] = filter_var($_POST["value"], FILTER_SANITIZE_NUMBER_FLOAT,FILTER_FLAG_ALLOW_FRACTION);
                             $data["confirmations"] = filter_var($_POST["confirmations"], FILTER_SANITIZE_NUMBER_INT);
                             $data["txhash"] = filter_var($_POST["txhash"], FILTER_SANITIZE_STRING);
                             $data["block"] = filter_var($_POST["block"], FILTER_SANITIZE_STRING);
@@ -32,20 +32,20 @@ $title=" - Event test"; require("header.php");
                             if (filter_var($url, FILTER_VALIDATE_URL) !== FALSE)
                             {
                                 $result = httpPost($url, $data);
-                                if ($result === TRUE)
+                                if ($result === FALSE)
                                 {
-                                    echo '
-                                    <div class="alert-message success">
-                                        <p>Message sent.</p>
-                                    </div>
-                                    ';
-                                } else {
                                     echo '
                                     <div class="alert-message error">
                                         <p>Message failed.</p>
                                     </div>
                                     ';
-                                }
+                                } else {
+                                    echo '
+                                    <div class="alert-message success">
+                                        <p>Message sent.</p>
+                                    </div>
+                                    ';
+				}
                             } else {
                                     echo '
                                     <div class="alert-message error">
