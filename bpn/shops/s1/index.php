@@ -13,13 +13,17 @@ if ($stmt->fetch())
 {
 	echo "Monitoring $address for payment ...<br><br>";
 }
-
+/*
 $stmt = $db->prepare("DELETE FROM `s1_addresses` WHERE `address`=?");
 $stmt->bind_param('s', $address);
 $db->update($stmt);
-
+*/
 $db->query("UNLOCK TABLES");
 ?>
+
+<a href="bitcoin:<?=$address?>&amount=0.01">bitcoin:<?=$address?>&amount=0.01</a><br>
+<img src="qr.php?text=bitcoin:<?=$address?>&amount=0.01">
+
 
 <script>
 function checkPayment()
@@ -27,7 +31,7 @@ function checkPayment()
 	$.getJSON('getPayment.php?address=<?=$address?>', function(data) {
 	  if (data != null)
 	  {
-	        var btc = value / 100000000;
+	        var btc = data['value'] / 100000000;
 		alert("Got payment of "+data['value']+" ("+btc+" BTC) with "+data['confirmations']+" confirmations");
 		//redirect to download page or something, note that the download page also needs to check that the payment is ok, since this is clientside
 	  }
