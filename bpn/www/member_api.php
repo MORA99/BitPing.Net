@@ -42,21 +42,21 @@ $activeuser = Users::getActiveUser();
               $txhash        = $_POST["txhash"];
               $block         = $_POST["block"];
               $sig           = $_POST["signature"];
-              $mysig = sha1( 
-                $address . 
-                $amount . 
-                $confirmations . 
-                $txhash . 
-                $block . 
-                "<?=$activeuser->secret?>" 
+              $mysig = sha1(
+                $address .
+                $amount .
+                $confirmations .
+                $txhash .
+                $block .
+                "<?=$activeuser->secret?>"
                 );
 
                 if ($mysig === $sig)
                 {
                   //check if number of confirmations is ok
-                  //update order/send user notification                
+                  //update order/send user notification
                 } else {
-                  //log all post data, send warning email to administrator                
+                  //log all post data, send warning email to administrator
                 }
                     </textarea>
 

@@ -104,7 +104,7 @@ topbar("orders", true);
                             <div class="clearfix">
                                 <label>Addresses<br>1 per line</label>
                                 <div class="input">
-                                    <textarea name="addresses" rows=25 style="width: 300px;"><?
+                                    <textarea name="addresses" rows=25 style="width: 325px;"><?
 foreach ($order->addresses as $address)        
     echo $address->address."\n";
                                         ?></textarea>

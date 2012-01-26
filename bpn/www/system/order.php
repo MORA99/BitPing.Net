@@ -98,5 +98,21 @@ class Order {
         $stmt->bind_param('i', $this->orderid);
         $db->update($stmt);
     }
+
+   public function addAddress($address)
+   {
+        $db = Database::getInstance();
+        $stmt = $db->prepare("INSERT IGNORE INTO `order_address` (`order_id`, `address`) VALUES (?,?)");
+        $stmt->bind_param('is', $this->orderid, $address);
+        $db->update($stmt);
+   }
+
+   public function removeAddress($address)
+   {
+        $db = Database::getInstance();
+        $stmt = $db->prepare("DELETE FROM `order_address` WHERE `order_id` = ? AND address = ? LIMIT 1");
+        $stmt->bind_param('is', $this->orderid, $address);
+        $db->update($stmt);
+   }
 }
 ?>

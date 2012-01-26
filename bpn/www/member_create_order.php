@@ -73,7 +73,7 @@ if (isset($_POST["create"])) {
                             <div class="clearfix">
                                 <label>Addresses<br>1 per line</label>
                                 <div class="input">
-                                    <textarea name="addresses" rows=25 style="width: 300px;"></textarea>
+                                    <textarea name="addresses" rows=25 style="width: 325px;"></textarea>
                                 </div>
                             </div>
 
