@@ -51,7 +51,9 @@ function httpPost($url, $params) {
 }
 
 function topbar($page, $memberarea=false) {
-    if ($memberarea) {
+$ca10="";$ca11=""; $ca12=""; $ca13="";$ca14="";
+
+	if ($memberarea) {
         if ($page == "orders") $ca11=' class="active" ';
         else if ($page == "profile") $ca12=' class="active" ';
         else if ($page == "api") $ca13=' class="active" ';
@@ -64,8 +66,7 @@ function topbar($page, $memberarea=false) {
       <div class="fill">
         <div class="container">';
 
-	if ( isset ( $ca10 ) )
-	{
+
 	 echo '
           <a class="brand" href="./">BitPing.Net</a>
           <ul class="nav">';
@@ -81,7 +82,6 @@ function topbar($page, $memberarea=false) {
             <li'.$ca14.'><a href="./member_contact.php">Contact</a></li>
 	          <li><a href="./logout.php">Logout</a></li>
           </ul>';
-	}
 	echo '
         </div>
       </div>
@@ -102,9 +102,10 @@ function topbar($page, $memberarea=false) {
 	  ';
 
 	echo '
-          <ul class="nav">
-            <li'.$ca1.'><a href="./">Home</a></li>
-	    ';
+          <ul class="nav">';
+	if ( isset ( $ca1 ) ) echo '
+            <li'.$ca1.'><a href="./">Home</a></li>';
+
 	    if ( isset ( $ca3 ) ) echo '
 	    <li'.$ca3.'><a href="./newuser.php">Register</a></li>
 	    ';
