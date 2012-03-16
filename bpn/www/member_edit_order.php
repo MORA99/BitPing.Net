@@ -73,7 +73,7 @@ topbar("orders", true);
                             <div class="clearfix">
                                 <label>Active</label>
                                 <div class="input">
-                                    <input name="active" type="checkbox" value="1" <?php echo$activecheck?>>
+                                    <input name="active" type="checkbox" value="1" <?php echo $activecheck?>>
                                 </div>
                             </div>
 
@@ -81,13 +81,13 @@ topbar("orders", true);
                                 <label>Confirmations needed</label>
                                 <div class="input">
                                     <select name="confirmations">
-                                        <option value="0"<?php echo$cs0?>>0</option>
-                                        <option value="1"<?php echo$cs1?>>1</option>
-                                        <option value="2"<?php echo$cs2?>>2</option>
-                                        <option value="3"<?php echo$cs3?>>3</option>
-                                        <option value="4"<?php echo$cs4?>>4</option>
-                                        <option value="5"<?php echo$cs5?>>5</option>
-                                        <option value="6"<?php echo$cs6?>>6</option>
+                                        <option value="0"<?php echo $cs0?>>0</option>
+                                        <option value="1"<?php echo $cs1?>>1</option>
+                                        <option value="2"<?php echo $cs2?>>2</option>
+                                        <option value="3"<?php echo $cs3?>>3</option>
+                                        <option value="4"<?php echo $cs4?>>4</option>
+                                        <option value="5"<?php echo $cs5?>>5</option>
+                                        <option value="6"<?php echo $cs6?>>6</option>
                                     </select>
                                 </div>
                             </div>
@@ -95,9 +95,9 @@ topbar("orders", true);
                             <div class="clearfix">
                                 <label>Notification methods</label>
                                 <div class="input">
-                                    <input name="notifications[]" type="checkbox" value="1" <?php echo$nc1?>> Email<br>
-                                    <input name="notifications[]" type="checkbox" value="2" <?php echo$nc2?>> HTTP POST (Set url in profile)<br>
-				    <input name="notifications[]" type="checkbox" value="3" <?php echo$nc3?>> Pubnub (See API for details)
+                                    <input name="notifications[]" type="checkbox" value="1" <?php echo $nc1?>> Email<br>
+                                    <input name="notifications[]" type="checkbox" value="2" <?php echo $nc2?>> HTTP POST (Set url in profile)<br>
+				    <input name="notifications[]" type="checkbox" value="3" <?php echo $nc3?>> Pubnub (See API for details)
                                 </div>
                             </div>
 

@@ -17,7 +17,7 @@
                     }
                     ?>
                 <div class="alert-message error">
-                    <p><?php echo$errmsg?></p>
+                    <p><?php echo $errmsg?></p>
                 </div>
     <?php
 }
