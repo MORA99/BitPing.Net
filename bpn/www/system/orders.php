@@ -1,4 +1,4 @@
-<?
+<?php
 class Orders {
     public static function createOrder($userid, $active, $confirmations, $notifications, $addresses) {
         $db = Database::getInstance();
