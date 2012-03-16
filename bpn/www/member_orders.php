@@ -1,11 +1,7 @@
 <?php require("system/shared.php"); ?>
 <?php checklogin();?>
-<<<<<<< HEAD
 <?php $title=" - Orders"; require("header.php"); ?>
 
-=======
-<?php  $title=" - Orders"; require("header.php"); ?>
->>>>>>> 198baa714e773f2ce325d8950dd6ce8b96c3769b
 <body>
     <?php topbar("orders", true); ?>
 
