@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8">
-        <title>Bitping.net<?=$title?></title>
+        <title>Bitping.net<?php echo$title?></title>
         <meta name="description" content="Bitcoin notify service, free and opensource">
         <meta name="author" content="Jan Nielsen aka MORA">
 	<meta name="keywords" content="bitcoin, bitping, bitcoin-notify, BTC, pubnub" />

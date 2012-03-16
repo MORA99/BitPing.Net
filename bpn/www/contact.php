@@ -1,5 +1,5 @@
-<? require("system/shared.php"); ?>
-<? $title=" - Contact"; require("header.php"); ?>
+<?php require("system/shared.php"); ?>
+<?php $title=" - Contact"; require("header.php"); ?>
 <body>
     <? topbar("contact"); ?>
 
@@ -18,9 +18,9 @@
  	    If you still feel like contacting us, our email is post@minigrossisten.dk<br>
 	    We are not trying to hide, Im sure you know where to find more information if you really need it ;).<br>
                 </div>
-                <? require("system-status.php"); ?>
+                <?php require("system-status.php"); ?>
             </div>
-            <? require("footer.php"); ?>
+            <?php require("footer.php"); ?>
         </div>
 </body>
 </html>

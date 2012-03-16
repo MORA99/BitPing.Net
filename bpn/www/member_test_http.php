@@ -1,12 +1,12 @@
-<? require("system/shared.php"); ?>
-<?checklogin();?>
-<?
+<?php require("system/shared.php"); ?>
+<?php checklogin();?>
+<?php
 $activeuser = Users::getActiveUser();
 
 $title=" - Event test"; require("header.php");
 ?>
 <body>
-<? topbar("api", true); ?>
+<?php topbar("api", true); ?>
     <div class="container">
         <div class="content">
             <div class="page-header">
@@ -14,7 +14,7 @@ $title=" - Event test"; require("header.php");
             </div>
             <div class="row">
                 <div class="span10">
-                    <?
+                    <?php
                     if (isset($_POST["go"]))
                     {
                             $data = array();
@@ -63,7 +63,7 @@ $title=" - Event test"; require("header.php");
                             <div class="clearfix">
                                 <label>HTTP URL<br>Defaults to the one from your profile</label>
                                 <div class="input">
-                                    <input type="text" name="url" value="<?=$activeuser->url;?>">
+                                    <input type="text" name="url" value="<?php echo$activeuser->url;?>">
                                 </div>
                             </div>
 
@@ -111,9 +111,9 @@ $title=" - Event test"; require("header.php");
                         </fieldset>
                     </form>
                 </div>
-<? require("system-status.php"); ?>
+<?php require("system-status.php"); ?>
             </div>
-<? require("footer.php"); ?>
+<?php require("footer.php"); ?>
         </div>
 </body>
 </html>

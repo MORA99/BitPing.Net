@@ -1,8 +1,8 @@
-<? require("system/shared.php"); ?>
-<?checklogin();?>
-<? $title=" - Member area"; require("header.php"); ?>
+<?php require("system/shared.php"); ?>
+<?php checklogin();?>
+<?php $title=" - Member area"; require("header.php"); ?>
 <body>
-    <? topbar("start", true); ?>
+    <?php topbar("start", true); ?>
 
     <div class="container">
         <div class="content">
@@ -23,9 +23,9 @@
 	    You can use Vanitygen to generate the addresses, then insert them into your database, and export the addresses to BPN (One address per line, no seperators).<br>
 	    The code for the monitor is opensource, so you can run your own server instead of using BPN if you like.	    
                 </div>
-                <? require("system-status.php"); ?>
+                <?php require("system-status.php"); ?>
             </div>
-            <? require("footer.php"); ?>
+            <?php require("footer.php"); ?>
         </div>
 </body>
 </html>

@@ -1,5 +1,5 @@
-<? require("system/shared.php"); ?>
-<? $title=" - OneShot adhoc notification"; require("header.php"); ?>
+<?php require("system/shared.php"); ?>
+<?php $title=" - OneShot adhoc notification"; require("header.php"); ?>
 <body>
     <? topbar("home"); ?>
 
@@ -51,9 +51,9 @@
                 </table>
 
                 </div>
-                <? require("system-status.php"); ?>
+                <?php require("system-status.php"); ?>
             </div>
-            <? require("footer.php"); ?>
+            <?php require("footer.php"); ?>
         </div>
 </body>
 </html>

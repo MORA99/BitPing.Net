@@ -1,6 +1,6 @@
-<? require("system/shared.php"); ?>
-<?checklogin();?>
-<?
+<?php require("system/shared.php"); ?>
+<?php checklogin();?>
+<?php 
 $activeuser = Users::getActiveUser();
 
 if (isset($_POST["delete"])) {
@@ -27,7 +27,7 @@ if (isset($_POST["save"])) {
 }
 ?>
 <body>
-<? topbar("profile", true); ?>
+<?php topbar("profile", true); ?>
     <div class="container">
         <div class="content">
             <div class="page-header">
@@ -41,7 +41,7 @@ if (isset($_POST["save"])) {
                             <div class="clearfix">
                                 <label>Username</label>
                                 <div class="input">
-                                    <input type="text" disabled value="<?=$activeuser->username;?>">
+                                    <input type="text" disabled value="<?php echo$activeuser->username;?>">
                                 </div>
                             </div>
 
@@ -62,14 +62,14 @@ if (isset($_POST["save"])) {
                             <div class="clearfix">
                                 <label>Email</label>
                                 <div class="input">
-                                    <input type="text" name="email" value="<?=$activeuser->email;?>">
+                                    <input type="text" name="email" value="<?php echo$activeuser->email;?>">
                                 </div>
                             </div>
 
                             <div class="clearfix">
                                 <label>POST URL</label>
                                 <div class="input">
-                                    <input type="text" name="url" value="<?=$activeuser->url;?>"><br>(ie. http://www.mydomain.tld/script.php)
+                                    <input type="text" name="url" value="<?php echo$activeuser->url;?>"><br>(ie. http://www.mydomain.tld/script.php)
                                 </div>
                             </div>
 
@@ -96,9 +96,9 @@ if (isset($_POST["save"])) {
                         </fieldset>
                     </form>
                 </div>
-<? require("system-status.php"); ?>
+<?php require("system-status.php"); ?>
             </div>
-<? require("footer.php"); ?>
+<?php require("footer.php"); ?>
         </div>
 </body>
 </html>

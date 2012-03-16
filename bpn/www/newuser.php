@@ -1,4 +1,4 @@
-<?
+<?php
 require("system/shared.php");
 
 if (isset($_POST['register'])) {
@@ -42,7 +42,7 @@ $title=" - Register";
 require("header.php");
 ?>
 <body>
-<? topbar("register"); ?>
+<?php topbar("register"); ?>
 
     <div class="container">
         <div class="content">
@@ -52,13 +52,13 @@ require("header.php");
             <div class="row">
                 <div class="span10">
 
-<?
+<?php
 if ($errmsg != "") {
     ?>
                     <div class="alert-message error">
-                        <p><?=$errmsg?></p>
+                        <p><?php echo $errmsg?></p>
                     </div>
-    <?
+    <?php
 }
 
                     ?>
@@ -118,9 +118,9 @@ if ($errmsg != "") {
                             </div>
                         </fieldset>
                 </div>
-<? require("system-status.php"); ?>
+<?php require("system-status.php"); ?>
             </div>
-<? require("footer.php"); ?>
+<?php require("footer.php"); ?>
         </div>
 </body>
 </html>

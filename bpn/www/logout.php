@@ -1,4 +1,4 @@
-<?
+<?php
 require("system/shared.php");
 
 $_SESSION["AUTH_USER_NAME"] = null;

@@ -1,13 +1,13 @@
-<? require_once("system/shared.php"); ?>
-<? require_once("header.php"); ?>
+<?php require_once("system/shared.php"); ?>
+<?php require_once("header.php"); ?>
 
 <body>
-    <? topbar("home"); ?>
+    <?php topbar("home"); ?>
 
     <div class="container">
         <div class="content">
             <div class="page-header">
-                <?
+                <?php
                 if ($_GET["errmsg"] != "") {
                     switch (filter_var($_GET["errmsg"], FILTER_SANITIZE_STRING)) {
                         case "loginfailure":
@@ -16,9 +16,9 @@
                     }
                     ?>
                 <div class="alert-message error">
-                    <p><?=$errmsg?></p>
+                    <p><?php echo$errmsg?></p>
                 </div>
-    <?
+    <?php
 }
 
                 if ($_GET["infomsg"] != "") {
@@ -37,9 +37,9 @@
                     }
                     ?>
                 <div class="alert-message success">
-                    <p><?=$infomsg?></p>
+                    <p><?php echo $infomsg?></p>
                 </div>
-                    <?
+                    <?php
 }
 ?>
 
@@ -59,9 +59,9 @@
 	    You can use Vanitygen to generate the addresses, then insert them into your database, and export the addresses to BPN (One address per line, no seperators).<br>
 	    The code for the monitor is opensource, so you can run your own server instead of using BPN if you like.	    
                 </div>
-<? require("system-status.php"); ?>
+<?php require("system-status.php"); ?>
             </div>
-                    <? require("footer.php"); ?>
+                    <?php require("footer.php"); ?>
         </div>
 </body>
 </html>

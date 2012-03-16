@@ -1,4 +1,4 @@
-<?
+<?php
 class Notify {
     public $id;
     public $name;
