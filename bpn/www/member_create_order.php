@@ -1,4 +1,4 @@
-<?
+<?php
 require("system/shared.php");
 checklogin();
 
@@ -25,9 +25,9 @@ if (isset($_POST["create"])) {
 
 ?>
 
-<? $title=" - Create order"; require("header.php"); ?>
+<?php $title=" - Create order"; require("header.php"); ?>
 <body>
-<? topbar("orders", true); ?>
+<?php topbar("orders", true); ?>
 
     <div class="container">
         <div class="content">
@@ -87,9 +87,9 @@ if (isset($_POST["create"])) {
                     </form>
 
                 </div>
-<? require("system-status.php"); ?>
+<?php require("system-status.php"); ?>
             </div>
-<? require("footer.php"); ?>
+<?php require("footer.php"); ?>
         </div>
 </body>
 </html>

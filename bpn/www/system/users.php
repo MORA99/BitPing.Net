@@ -1,4 +1,4 @@
-<?
+<?php
 class Users {
     public static function isUsernameAvaliable($user) {
         $db = database::getInstance();

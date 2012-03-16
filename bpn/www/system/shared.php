@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 
 require("config.php");
@@ -11,7 +11,7 @@ require("notify.php");
 require("address.php");
 require("bitcoin.inc.php");
 
-
+if ( isset( $_SESSION["AUTH_FROM_IP"] ) )
 if ($_SERVER['REMOTE_ADDR'] == $_SESSION["AUTH_FROM_IP"] && $_SESSION["AUTH_USER_NAME"] != "")
     define("USERNAME", $_SESSION["AUTH_USER_NAME"]);
 
@@ -51,7 +51,9 @@ function httpPost($url, $params) {
 }
 
 function topbar($page, $memberarea=false) {
-    if ($memberarea) {
+$ca10="";$ca11=""; $ca12=""; $ca13="";$ca14="";
+
+	if ($memberarea) {
         if ($page == "orders") $ca11=' class="active" ';
         else if ($page == "profile") $ca12=' class="active" ';
         else if ($page == "api") $ca13=' class="active" ';
@@ -62,16 +64,25 @@ function topbar($page, $memberarea=false) {
         echo '
     <div class="topbar">
       <div class="fill">
-        <div class="container">
-          <a class="brand" href="/">BitPing.Net</a>
-          <ul class="nav">
-            <li'.$ca10.'><a href="/member_start.php">Start</a></li>
-            <li'.$ca11.'><a href="/member_orders.php">Orders</a></li>
-	          <li'.$ca12.'><a href="/member_profile.php">Profile</a></li>
-	          <li'.$ca13.'><a href="/member_api.php">API</a></li>
-            <li'.$ca14.'><a href="/member_contact.php">Contact</a></li>
-	          <li><a href="/logout.php">Logout</a></li>
-          </ul>
+        <div class="container">';
+
+
+	 echo '
+          <a class="brand" href="./">BitPing.Net</a>
+          <ul class="nav">';
+	  if ( isset ( $ca10 ) ) echo '
+            <li'.$ca10.'><a href="./member_start.php">Start</a></li>';
+	  if ( isset ( $ca11 ) ) echo '
+            <li'.$ca11.'><a href="./member_orders.php">Orders</a></li>';
+	  if ( isset ( $ca12 ) ) echo '
+	          <li'.$ca12.'><a href="./member_profile.php">Profile</a></li>';
+	  if ( isset ( $ca13 ) ) echo '
+	          <li'.$ca13.'><a href="./member_api.php">API</a></li>';
+	  if ( isset ( $ca14 ) ) echo '
+            <li'.$ca14.'><a href="./member_contact.php">Contact</a></li>
+	          <li><a href="./logout.php">Logout</a></li>
+          </ul>';
+	echo '
         </div>
       </div>
     </div>
@@ -87,15 +98,29 @@ function topbar($page, $memberarea=false) {
     <div class="topbar">
       <div class="fill">
         <div class="container">
-          <a class="brand" href="/">BitPing.Net</a>
-          <ul class="nav">
-            <li'.$ca1.'><a href="/">Home</a></li>
-<!--            <li'.$ca2.'><a href="/faq.php">FAQ</a></li> -->
-	    <li'.$ca3.'><a href="/newuser.php">Register</a></li>
-            <li'.$ca4.'><a href="/contact.php">Contact</a></li>
-	    <li'.$ca5.'><a href="/legal.php">Legal</a></li>
+          <a class="brand" href="./">BitPing.Net</a>
+	  ';
+
+	echo '
+          <ul class="nav">';
+	if ( isset ( $ca1 ) ) echo '
+            <li'.$ca1.'><a href="./">Home</a></li>';
+
+	    if ( isset ( $ca3 ) ) echo '
+	    <li'.$ca3.'><a href="./newuser.php">Register</a></li>
+	    ';
+	    if ( isset ( $ca4 ) ) echo '
+            <li'.$ca4.'><a href="./contact.php">Contact</a></li>
+	    ';
+	    if ( isset ( $ca5 ) ) echo '
+	    <li'.$ca5.'><a href="./legal.php">Legal</a></li>
+	    ';
+	    echo '
           </ul>
-          <form action="login.php" method="post" class="pull-right">
+	';
+
+	echo '
+          <form action="./login.php" method="post" class="pull-right">
             <input class="input-small" type="text" name="user" placeholder="Username">
             <input class="input-small" type="password" name="pass" placeholder="Password">
             <button class="btn" type="submit">Sign in</button>

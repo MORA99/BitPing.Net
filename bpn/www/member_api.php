@@ -1,11 +1,11 @@
-<?
+<?php
 require("system/shared.php");
 checklogin();
 $title=" - API"; require("header.php");
 $activeuser = Users::getActiveUser();
 ?>
 <body>
-    <? topbar("api", true); ?>
+    <?php topbar("api", true); ?>
 
     <div class="container">
         <div class="content">
@@ -48,7 +48,7 @@ $activeuser = Users::getActiveUser();
                 $confirmations .
                 $txhash .
                 $block .
-                "<?=$activeuser->secret?>"
+                "<?php echo $activeuser->secret?>"
                 );
 
                 if ($mysig === $sig)
@@ -61,13 +61,13 @@ $activeuser = Users::getActiveUser();
                     </textarea>
 
 <br><br><h1>Pubnub</h1>
-Sub-key: <?=PUBNUB_SUB?><br>
-Channel: <?=sha1($activeuser->secret)?> (Your private channel)<br>
+Sub-key: <?php echo PUBNUB_SUB?><br>
+Channel: <?php echo sha1($activeuser->secret)?> (Your private channel)<br>
 Data is the same as described in HTTP POST (json encoded)<br>
                 </div>
-                <? require("system-status.php"); ?>
+                <?php require("system-status.php"); ?>
             </div>
-            <? require("footer.php"); ?>
+            <?php require("footer.php"); ?>
         </div>
 </body>
 </html>

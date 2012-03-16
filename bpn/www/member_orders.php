@@ -1,8 +1,9 @@
-<? require("system/shared.php"); ?>
-<?checklogin();?>
-<? $title=" - Orders"; require("header.php"); ?>
+<?php require("system/shared.php"); ?>
+<?php checklogin();?>
+<?php $title=" - Orders"; require("header.php"); ?>
+
 <body>
-    <? topbar("orders", true); ?>
+    <?php topbar("orders", true); ?>
 
     <div class="container">
         <div class="content">
@@ -12,11 +13,11 @@
             <div class="row">
                 <div class="span10">
 
-                    <?
+                    <?php
                     $orders = Orders::getOrdersForUsername(USERNAME);
 
                     if (count($orders) > 0) {
-                        ?>
+                    ?>
 
                     <table class="zebra-striped">
                         <thead>
@@ -28,7 +29,7 @@
                             </tr>
                         </thead>
                         <tbody>
-    <?
+    <?php
                                 foreach ($orders as $order) {
                                     $active = ($order->active)?"Yes":"No";
                                     $addresses = count($order->addresses);
@@ -38,13 +39,14 @@
                                     }
                                     $types = implode("<br>", $types);
                                     ?>
-                            <tr><td><?=$order->orderid?></td><td><a href="/member_edit_order.php?id=<?=$order->orderid?>"><?=$active?></a></td><td><?=$order->confirmations?></td><td><?=$types?></td><td><?=$addresses?></td></tr>
-                                    <?
+                            <tr><td><?php echo $order->orderid; ?></td><td><a href="/member_edit_order.php?id=<?php echo $order->orderid; ?>"><?php echo $active ; ?></a></td><td><?php echo $order->confirmations; ?></td><td><?php echo $types; ?></td><td><?php echo $addresses; ?>
+			    </td></tr>
+                                    <?php
                                 }
     ?>
                         </tbody>
                     </table>
-                                <?
+                                <?php
 }
 ?>
                     <div class="clearfix">
@@ -74,9 +76,9 @@ OK means OK :)<br><br>
 
 
                 </div>
-<? require("system-status.php"); ?>
+<?php require("system-status.php"); ?>
             </div>
-<? require("footer.php"); ?>
+<?php require("footer.php"); ?>
         </div>
 </body>
 </html>

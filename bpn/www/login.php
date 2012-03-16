@@ -1,4 +1,4 @@
-<?
+<?php
 require("system/shared.php");
 
 $username = filter_var($_POST["user"], FILTER_SANITIZE_STRING);
@@ -21,7 +21,7 @@ if ($username != "" && $password != "") {
         $_SESSION["AUTH_FROM_IP"] = $_SERVER['REMOTE_ADDR'];
         logLogin($user->username, true);
         sleep(1);
-        header("Location: /member_start.php");
+        header("Location: ./member_start.php");
         die();
     } else {
         logLogin($username, false);

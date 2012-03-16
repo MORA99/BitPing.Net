@@ -1,7 +1,7 @@
-<? require("system/shared.php"); ?>
-<? $title=" - FAQ"; require("header.php"); ?>
+<?php require("system/shared.php"); ?>
+<?php $title=" - FAQ"; require("header.php"); ?>
 <body>
-    <? topbar("faq"); ?>
+    <?php topbar("faq"); ?>
 
     <div class="container">
         <div class="content">
@@ -11,9 +11,9 @@
             <div class="row">
                 <div class="span10">
                 </div>
-                <? require("system-status.php"); ?>
+                <?php require("system-status.php"); ?>
             </div>
-            <? require("footer.php"); ?>
+            <?php require("footer.php"); ?>
         </div>
 </body>
 </html>

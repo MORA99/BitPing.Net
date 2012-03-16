@@ -1,4 +1,4 @@
-<?
+<?php
 require_once("system/shared.php");
 $db = Database::getInstance();
 
@@ -38,8 +38,8 @@ if ($bciblock == null) $bciblock = "?";
 ?>
 <div class="span4">
     <h3>System status</h3>
-    Latest local block : <?=$localblock;?><br>
-    Latest <a href="http://blockexplorer.com/" target="_blank">BBE</a> block : <?=$bbeblock;?><br>
+    Latest local block : <?php echo $localblock;?><br>
+    Latest <a href="http://blockexplorer.com/" target="_blank">BBE</a> block : <?php echo $bbeblock;?><br>
     <br>
     <small>The system does not use BBE for data collection, the information is simply to see if our database is updated.</small>
 </div>
