@@ -13,7 +13,7 @@
           <script src="/clientside/html5.js"></script>
         <![endif]-->
 
-        <link href="/clientside/bootstrap.css" rel="stylesheet">
-        <link href="/clientside/custom.css" rel="stylesheet">
+        <link href="./clientside/bootstrap.css" rel="stylesheet">
+        <link href="./clientside/custom.css" rel="stylesheet">
     </head>
 
