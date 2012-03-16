@@ -1,6 +1,7 @@
 <?php require("system/shared.php"); ?>
 <?php checklogin();?>
-<?php  $title=" - Orders"; require("header.php"); ?>
+<?php $title=" - Orders"; require("header.php"); ?>
+
 <body>
     <?php topbar("orders", true); ?>
 
@@ -12,11 +13,11 @@
             <div class="row">
                 <div class="span10">
 
-                    <?
+                    <?php
                     $orders = Orders::getOrdersForUsername(USERNAME);
 
                     if (count($orders) > 0) {
-                        ?>
+                    ?>
 
                     <table class="zebra-striped">
                         <thead>
@@ -38,7 +39,8 @@
                                     }
                                     $types = implode("<br>", $types);
                                     ?>
-                            <tr><td><?php echo=$order->orderid?></td><td><a href="/member_edit_order.php?id=<?php echo$order->orderid?>"><?php echo $active?></a></td><td><?php echo $order->confirmations?></td><td><?php echo $types?></td><td><?php echo $addresses?></td></tr>
+                            <tr><td><?php echo $order->orderid; ?></td><td><a href="/member_edit_order.php?id=<?php echo $order->orderid; ?>"><?php echo $active ; ?></a></td><td><?php echo $order->confirmations; ?></td><td><?php echo $types; ?></td><td><?php echo $addresses; ?>
+			    </td></tr>
                                     <?php
                                 }
     ?>

@@ -41,7 +41,8 @@ class Orders {
         while ($stmt->fetch()) {
             $orders[] = new Order($order_id);
         }
-        return $orders;
+        if ( isset ( $orders ) ) return $orders;
+	else return NULL;
     }
 }
 ?>
