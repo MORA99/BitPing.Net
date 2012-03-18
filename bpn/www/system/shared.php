@@ -10,7 +10,8 @@ require("orders.php");
 require("notify.php");
 require("address.php");
 require("bitcoin.inc.php");
-
+require("notifications.php");
+require("notification.php");
 
 if ($_SERVER['REMOTE_ADDR'] == $_SESSION["AUTH_FROM_IP"] && $_SESSION["AUTH_USER_NAME"] != "")
     define("USERNAME", $_SESSION["AUTH_USER_NAME"]);
@@ -52,8 +53,10 @@ function httpPost($url, $params) {
 
 function topbar($page, $memberarea=false) {
     if ($memberarea) {
+echo "<!-- $page -->";
         if ($page == "orders") $ca11=' class="active" ';
         else if ($page == "profile") $ca12=' class="active" ';
+	else if ($page == "history") $cal5=' class="active" ';
         else if ($page == "api") $ca13=' class="active" ';
         else if ($page == "contact") $ca14=' class="active" ';
         else $ca10=' class="active" ';
@@ -69,7 +72,8 @@ function topbar($page, $memberarea=false) {
             <li'.$ca11.'><a href="/member_orders.php">Orders</a></li>
 	          <li'.$ca12.'><a href="/member_profile.php">Profile</a></li>
 	          <li'.$ca13.'><a href="/member_api.php">API</a></li>
-            <li'.$ca14.'><a href="/member_contact.php">Contact</a></li>
+		  <li'.$cal5.'><a href="/member_history.php">History</a></li>
+	          <li'.$ca14.'><a href="/member_contact.php">Contact</a></li>
 	          <li><a href="/logout.php">Logout</a></li>
           </ul>
         </div>
@@ -79,6 +83,7 @@ function topbar($page, $memberarea=false) {
     } else {
         if ($page == "faq") $ca2=' class="active" ';
         else if ($page == "register") $ca3=' class="active" ';
+        else if ($page == "tools") $ca6=' class="active" ';
         else if ($page == "contact") $ca4=' class="active" ';
         else if ($page == "legal") $ca5=' class="active" ';
         else $ca1=' class="active" ';
@@ -92,6 +97,7 @@ function topbar($page, $memberarea=false) {
             <li'.$ca1.'><a href="/">Home</a></li>
 <!--            <li'.$ca2.'><a href="/faq.php">FAQ</a></li> -->
 	    <li'.$ca3.'><a href="/newuser.php">Register</a></li>
+	    <li'.$ca6.'><a href="/tools.php">Tools</a></li> 
             <li'.$ca4.'><a href="/contact.php">Contact</a></li>
 	    <li'.$ca5.'><a href="/legal.php">Legal</a></li>
           </ul>

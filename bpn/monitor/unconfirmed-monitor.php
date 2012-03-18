@@ -50,9 +50,9 @@ echo "Notification : ".$notification->id." \r\n\r\n";
                 $data["amount"] = $value;
                 $data["btc_amount"] = $btc;
                 $data["confirmations"] = $confirmations;
-                $data["txhash"] = $txhash;
+                $data["txhash"] = $tx;
                 $data["block"] = -1;
-                $data["signature"] = sha1( $address . $value . $confirmations . $txhash . $currentheight . $user->secret );
+                $data["signature"] = sha1( $address . $value . $confirmations . $tx . $data['block'] . $user->secret );
                 if(filter_var($user->url, FILTER_VALIDATE_URL) !== FALSE && $user->url != "")
                 {
                     $result = httpPost($user->url, $data);
@@ -60,8 +60,6 @@ echo "Notification : ".$notification->id." \r\n\r\n";
                         $success = false;
                     else
                         $success = true;
-                } else {
-                    mail(SYS_ADMIN, "URL in monitor bad", "Skipping http attempt for ".$user->url, "FROM: monitor@bitping.net");
                 }
                 break;
 
@@ -107,4 +105,4 @@ echo "Notification : ".$notification->id." \r\n\r\n";
 }
 
 //Cleanup - Delete any monitors with a failure count over 10 AND a timestamp more than 1hours ago 5*6=30
-$stmt = $db->query("DELETE FROM `active_uncomfirmed_monitors` WHERE failures > 10 AND NOW() > TIMESTAMPADD(MINUTE,5,`timestamp`) LIMIT 1");
+$stmt = $db->query("DELETE FROM `active_uncomfirmed_monitors` WHERE failures > 100 AND NOW() > TIMESTAMPADD(HOUR,1,`timestamp`) LIMIT 1");

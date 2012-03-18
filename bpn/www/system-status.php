@@ -32,7 +32,7 @@ function getCacheValue($key) {
 
 $bbeblock = getCacheValue("BBE");
 if ($bbeblock == null) $bbeblock = "?";
-$bciblock = getCacheValue("BCI");   //Anyone know how to get latest block from BCI ?
+$bciblock = getCacheValue("BCI");
 if ($bciblock == null) $bciblock = "?";
 
 ?>
@@ -40,8 +40,37 @@ if ($bciblock == null) $bciblock = "?";
     <h3>System status</h3>
     Latest local block : <?=$localblock;?><br>
     Latest <a href="http://blockexplorer.com/" target="_blank">BBE</a> block : <?=$bbeblock;?><br>
+    Latest <a href="http://blockchain.info/" target="_blank">BCI</a> block : <?=$bciblock;?><br>
     <br>
-    <small>The system does not use BBE for data collection, the information is simply to see if our database is updated.</small>
+    <small>The system does not use BBE/BCI for data collection, the information is simply to see if our database is updated.</small>
+<h3>Exchange rates</h3>
+<table>
+<?
+function showExchangeRate($pair)
+{
+	$db = Database::getInstance();
+	$stmt = $db->prepare("SELECT `key`,`value`,`last_update` FROM exchange_rate WHERE `key` = ?");
+	$stmt->bind_param('s', $pair);
+	$db->select($stmt);
+	$stmt->bind_result($key, $value, $update);
+
+	if ($stmt->fetch())
+	{
+		$value = number_format($value, 4);
+	        echo "<tr><td>".$key."</td><td>".$value."</td></tr>";
+	}
+}
+
+
+showExchangeRate('USDBTC');
+showExchangeRate('EURBTC');
+showExchangeRate('GBPBTC');
+showExchangeRate('JPYBTC');
+showExchangeRate('AUDBTC');
+showExchangeRate('DKKBTC');
+?>
+</table>
+<small>This data is collected from various providers and provided free of charge for informational purposes only, with no guarantee whatsoever of accuracy, validity, availability or fitness for any purpose; use at your own risk</small>
 </div>
 </div>
 

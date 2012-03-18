@@ -13,7 +13,11 @@ $stmt->fetch();
 
 //Build array of monitored addresses
 $addresses = array();
-$res = $db->query("SELECT address,order_id FROM `order_address`");
+$res = $db->query("
+	SELECT address,order_id FROM `order_address`
+	JOIN orders ON order_address.order_id = orders.order_id
+	WHERE orders.confirmations > 0
+");
 
 if ($res && $res->num_rows > 0) {
     while ($row = $res->fetch_array()) {
@@ -104,7 +108,7 @@ while ($row = $res->fetch_array()) {
             echo "confirmatins : ".$confirmations."\r\n";
 
             $order = new Order($orderid);
-            if ($confirmations >= $order->confirmations) {
+            if ($confirmations >= $order->confirmations && $order->confirmations != 0) {
                 echo "$tx has enough confirmations for notification.";
                 $success = true;
 
