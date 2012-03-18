@@ -18,7 +18,7 @@ if (isset($_POST['register'])) {
                         $user->email = $email;
                         $user->save();
 
-                        header("Location: /?infomsg=usercreated");
+                        header("Location: ./?infomsg=usercreated");
                         die();
                     } else {
                         $errmsg = "This email address is already in use, please login or use a different one.<br>If you need more than 1000addresses, please contact us instead of making multiple accounts.";

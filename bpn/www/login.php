@@ -26,9 +26,9 @@ if ($username != "" && $password != "") {
     } else {
         logLogin($username, false);
         sleep(rand(1,5));
-        header("Location: /?errmsg=loginfailure");
+        header("Location: ./?errmsg=loginfailure");
     }
 }
 logLogin($username, false);
-header("Location: /?errmsg=loginfailure");
+header("Location: ./?errmsg=loginfailure");
 ?>
