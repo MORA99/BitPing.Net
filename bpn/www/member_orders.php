@@ -39,7 +39,7 @@
                                     }
                                     $types = implode("<br>", $types);
                                     ?>
-                            <tr><td><?php echo $order->orderid; ?></td><td><a href="/member_edit_order.php?id=<?php echo $order->orderid; ?>"><?php echo $active ; ?></a></td><td><?php echo $order->confirmations; ?></td><td><?php echo $types; ?></td><td><?php echo $addresses; ?>
+                            <tr><td><?php echo $order->orderid; ?></td><td><a href="./member_edit_order.php?id=<?php echo $order->orderid; ?>"><?php echo $active ; ?></a></td><td><?php echo $order->confirmations; ?></td><td><?php echo $types; ?></td><td><?php echo $addresses; ?>
 			    </td></tr>
                                     <?php
                                 }

@@ -32,7 +32,7 @@ $activeuser = Users::getActiveUser();
                         <tr><td>signature</td><td>A signature generated using your secret key<br>You should validate this to make sure its not a fraud attempt.</td></tr>
                     </table>
 
-                    <br><a href="/member_test_http.php">You can send a test event from here</a><br><br>
+                    <br><a href="./member_test_http.php">You can send a test event from here</a><br><br>
 
                     <textarea style="width: 100%" rows=20>
               $address       = $_POST["to_address"];
