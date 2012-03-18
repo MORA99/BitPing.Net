@@ -1,4 +1,4 @@
-<?
+<?php
 class Orders {
     public static function createOrder($userid, $active, $confirmations, $notifications, $addresses) {
         $db = Database::getInstance();
@@ -41,7 +41,8 @@ class Orders {
         while ($stmt->fetch()) {
             $orders[] = new Order($order_id);
         }
-        return $orders;
+        if ( isset ( $orders ) ) return $orders;
+	else return NULL;
     }
 }
 ?>

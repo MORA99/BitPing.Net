@@ -1,4 +1,4 @@
-<?
+<?php
 class Database {
     private static $instance;
     private $dblink;
@@ -43,6 +43,7 @@ class Database {
 
     public function prepare($sql) {
         $result = $this->dblink->prepare($sql);
+	if ( $result )
         if ($result === false) {
             $this->error("SQL error - $sql - ".$this->dblink->error);
             die();
@@ -85,7 +86,8 @@ class Database {
             die();
         }
         $stmt->store_result();
-        return $result;
+	if ( isset ( $result ) ) return $result;
+	else return NULL;
     }
 }
 ?>

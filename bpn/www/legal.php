@@ -1,7 +1,7 @@
-<? require("system/shared.php"); ?>
-<? $title=" - Legal"; require("header.php"); ?>
+<?php require("system/shared.php"); ?>
+<?php $title=" - Legal"; require("header.php"); ?>
 <body>
-    <? topbar("legal"); ?>
+    <?php topbar("legal"); ?>
 
     <div class="container">
         <div class="content">
@@ -53,9 +53,9 @@ OTHER DEALINGS IN THE SOFTWARE.
 For more information, please refer to <a href="http://unlicense.org/" target="_blank">http://unlicense.org</a>
 </PRE>
                 </div>
-                <? require("system-status.php"); ?>
+                <?php require("system-status.php"); ?>
             </div>
-            <? require("footer.php"); ?>
+            <?php require("footer.php"); ?>
         </div>
 </body>
 </html>

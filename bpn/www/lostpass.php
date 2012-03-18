@@ -1,4 +1,4 @@
-<?
+<?php
 require("system/shared.php");
 
 if (isset($_GET["reset"])) {
@@ -74,7 +74,7 @@ if (isset($_POST['resend'])) {
 $title=" - Lost password"; require("header.php");
 ?>
 <body>
-<? topbar("home"); ?>
+<?php topbar("home"); ?>
 
     <div class="container">
         <div class="content">
@@ -108,9 +108,9 @@ $title=" - Lost password"; require("header.php");
                             </div>
                         </fieldset>
                 </div>
-<? require("system-status.php"); ?>
+<?php require("system-status.php"); ?>
             </div>
-<? require("footer.php"); ?>
+<?php require("footer.php"); ?>
         </div>
 </body>
 </html>
