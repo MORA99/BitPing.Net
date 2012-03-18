@@ -8,8 +8,9 @@
         <div class="content">
             <div class="page-header">
                 <?php
-                if (isset ( $_GET["errmsg"] ) )
-		 if ( $_GET["errmsg"] != "") {
+		if ( isset ( $_GET["errmsg"] ) && $_GET["errmsg"] != "" ) {
+//		if (isset ( $_GET["errmsg"] ) )
+//		 if ( $_GET["errmsg"] != "") {
                     switch (filter_var($_GET["errmsg"], FILTER_SANITIZE_STRING)) {
                         case "loginfailure":
                             $errmsg = "Wrong username or password - <a href='./lostpass.php'>Forgot your username/password?</a>";
