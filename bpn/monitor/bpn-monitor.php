@@ -1,4 +1,4 @@
-<?
+<?php
 require(dirname(__FILE__)."/../www/system/shared.php");
 require(dirname(__FILE__)."/../www/system/Pubnub.php");
 
@@ -14,9 +14,10 @@ $stmt->fetch();
 //Build array of monitored addresses
 $addresses = array();
 $res = $db->query("
-	SELECT address,order_id FROM `order_address`
-	JOIN orders ON order_address.order_id = orders.order_id
-	WHERE orders.confirmations > 0
+ SELECT `order_address`.`address` , `order_address`.`order_id`
+ FROM `order_address`
+ JOIN orders ON order_address.order_id = orders.order_id
+ WHERE orders.confirmations >0
 ");
 
 if ($res && $res->num_rows > 0) {
