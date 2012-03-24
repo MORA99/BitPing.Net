@@ -19,7 +19,7 @@ if (isset($_POST["create"])) {
 
     orders::createOrder($user->userid, $active, $confirmations, $notifications, $addresses);
 
-    header("Location: /member_orders.php");
+    header("Location: ./member_orders.php");
     die();
 }
 

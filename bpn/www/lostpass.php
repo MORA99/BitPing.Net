@@ -27,7 +27,7 @@ if (isset($_GET["reset"])) {
                 , "FROM: monitor@BitPing.Net");
     }
 
-    header("Location: /?infomsg=passresetcomplete");
+    header("Location: ./?infomsg=passresetcomplete");
     die();
 }
 
@@ -67,7 +67,7 @@ if (isset($_POST['resend'])) {
                 , "FROM: monitor@BitPing.Net");
     }
 
-    header("Location: /?infomsg=resetmsgsent");
+    header("Location: ./?infomsg=resetmsgsent");
     die();
 }
 

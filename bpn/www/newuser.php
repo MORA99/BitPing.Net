@@ -18,7 +18,7 @@ if (isset($_POST['register'])) {
                         $user->email = $email;
                         $user->save();
 
-                        header("Location: /?infomsg=usercreated");
+                        header("Location: ./?infomsg=usercreated");
                         die();
                     } else {
                         $errmsg = "This email address is already in use, please login or use a different one.<br>If you need more than 1000addresses, please contact us instead of making multiple accounts.";
@@ -105,7 +105,7 @@ if ($errmsg != "") {
                             </div>
 
                             Registering for BPN is free, and allows you to monitor up to 1000 addresses.<br><br>
-			    You may prefer to use <a href="/oneshot.php">adhoc notification</a> instead of registering as a user.<br>
+			    You may prefer to use <a href="./oneshot.php">adhoc notification</a> instead of registering as a user.<br>
                             This is a soft limit, its mainly here to protect the service from being overrun, if you need to monitor more than 1000, just send me an email with a estimate, and I will most likely approve it.<br>
                             <br>We may add services that require payment(sms, etc) later on<br>-But the email and HTTP POST will remain free.<br>
                             <br>We will not give/sell/rent/abuse your email address and other provided data, except as outlined in "Legal".
