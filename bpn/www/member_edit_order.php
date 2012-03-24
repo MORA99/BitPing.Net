@@ -10,7 +10,7 @@ checkOrderAccess($order);
 
 if (isset($_POST["delete"])) {
     $order->delete();
-    header("Location: /member_orders.php");
+    header("Location: ./member_orders.php");
     die();
 }
 
@@ -33,7 +33,7 @@ if (isset($_POST["save"])) {
 
     $order->save();
 
-    header("Location: /member_orders.php");
+    header("Location: ./member_orders.php");
     die();
 }
 

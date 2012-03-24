@@ -5,7 +5,7 @@ $activeuser = Users::getActiveUser();
 
 if (isset($_POST["delete"])) {
     $activeuser->delete();
-    header("Location: /logout.php");
+    header("Location: ./logout.php");
     die();
 }
 
